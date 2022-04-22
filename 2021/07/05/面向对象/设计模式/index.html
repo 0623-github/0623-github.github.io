@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>设计模式 | ldk博博博客</title>
+  <meta name="author" content="ldk">
+  
+  <meta name="description" content="ldk的博客">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="设计模式"/>
+  <meta property="og:site_name" content="ldk博博博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ldk博博博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-面向对象/设计模式" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-05T06:51:25.000Z"><a href="/2021/07/05/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">2021-07-05</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">设计模式</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>抽象、复用</p>
+<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ol>
+<li><p>依赖倒置原则</p>
+<p>高层模块不依赖于底层模块</p>
+</li>
+<li><p>开放封闭原则</p>
+<p>不要改变、要扩展</p>
+</li>
+<li><p>单一职责原则</p>
+<p>一个类应该只有一个引起它变化的原因</p>
+</li>
+<li><p>替换原则</p>
+<p>子类必须能替换他们的基类</p>
+</li>
+<li><p>接口隔离原则</p>
+<p>不应该强迫客户程序依赖它们不用的方法</p>
+<p>接口应该小而完备</p>
+<p>（尽量不要把他public出去）</p>
+</li>
+<li><p>优先使用对象组合而不是继承</p>
+</li>
+<li><p>封装变化点</p>
+</li>
+<li><p>针对接口编程、不是针对实现</p>
+<p>接口标准化！</p>
+</li>
+</ol>
+<p>在变化、稳定中间寻找隔离点然后分离他们</p>
+<h2 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h2><p>重构关键技法</p>
+<p>静态-&gt;动态</p>
+<p>早绑定-&gt;晚绑定</p>
+<p>继承-&gt;组合</p>
+<p>编译时依赖-&gt; 运行时依赖</p>
+<p>紧耦合-&gt;松耦合</p>
+<h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p>一个操作中的算法骨架，将一些步骤延迟到子类中。同时支持子类的变化</p>
+<p>这个算法骨架得是稳定的，字类重写的方法可以不稳定</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>有些对象使用的算法、把这些算法都编码到类中 可能更臃肿</p>
+<p>if……else if等等 这种好多可以用策略模式</p>
+<p>一系列算法是变化的，客户程序调用是稳定的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">1</span>)</span><br><span class="line">            …………</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">2</span>)</span><br><span class="line">            …………</span><br><span class="line">        …………</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 改为：</span></span><br><span class="line"><span class="function">class <span class="title">Sol</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">class <span class="title">sol1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">class <span class="title">sol2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">class <span class="title">sol3</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    Sol* fun;</span><br><span class="line">    A(Sol* a)&#123;</span><br><span class="line">        fun = a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        fun.func();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">A <span class="title">a</span><span class="params">(<span class="keyword">new</span> sol1())</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>通知依赖关系、一个对象状态发生变化，所有对象都要得到通知</p>
+<p>例如进度条</p>
+<p>在划分文件类中含有一个Iprocess的抽象接口</p>
+<p>好多实际的进度条对象继承这个接口, 然后在那个class中 加个vector 遍历 调用update方法</p>
+<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>组合优于继承的典型体现！</p>
+<p>同时继承和组合的，基本都是装饰模式</p>
+<p>主体操作和扩展操作应该分开继承</p>
+<p>在接口上</p>
+<p>A* a</p>
+<p>B* b(a)</p>
+<p>C* c(a)</p>
+<p>B、C装饰A</p>
+<p>例如：</p>
+<p>图形有形状、颜色两种</p>
+<p>Shape抽象类、circle、Rectangle等继承Shape</p>
+<p>然后 RedCircle、BlackCircle继承Circle</p>
+<p>这样就有n*m个类</p>
+<p>如果用装饰器 就会有n+m个类</p>
+<h2 id="桥模式"><a href="#桥模式" class="headerlink" title="桥模式"></a>桥模式</h2><p>划清责任非常重要</p>
+<p>继承变为组合</p>
+<p>不同变化方向、就不应该放在一个类里</p>
+<p>抽象部分与实现部分分离 使他们能独立的变化</p>
+<p>例如：</p>
+<h2 id><a href="#" class="headerlink" title></a><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span> <span class="comment">// 抽象类</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drowcircle</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">drowRedCircle</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drowcircle</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">drowGreenCircle</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drowcircle</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line">    A* drowCircle;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drow</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">circle</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">drow</span><span class="params">()</span></span>&#123;</span><br><span class="line">        drowCircle.drowCircle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></h2><h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method让一个类的实例化延迟。</p>
+<p>虚函数到子类</p>
+<p>（绕开new）</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>一系列相互依赖的对象</p>
+<p>高内聚、松耦合</p>
+<p>一个接口负责创建一系列的对象</p>
+<p>抽象工厂  可以创建好多个对象</p>
+<h2 id="原型模式-prototype"><a href="#原型模式-prototype" class="headerlink" title="原型模式 prototype"></a>原型模式 prototype</h2><p>把抽象类 和 工厂类合并  也就是没有工厂类，在抽象类里写个clone</p>
+<p>通过克隆自己来创建对象</p>
+<p>不能直接用原型的对象，原型对象只是用来供你克隆的，</p>
+<p>什么时候用？</p>
+<p>如果想要当前状态的这种类，当创建结构复杂的时候，只用创建一次 之后克隆这个就好了。</p>
+<p>需不需要考虑中间状态，保存中间状态。</p>
+<p>拥有稳定接口</p>
+<h2 id="构建器"><a href="#构建器" class="headerlink" title="构建器"></a>构建器</h2><p>创建一个复杂对象</p>
+<p>创建的各个部分经常面临着剧烈的变化，但是把他们组合在一起的算法相对稳定。 （跟模板方法是不是很像） </p>
+<p>同一个构建过程可以创建多个不同对象</p>
+<p>如果构建过程太多，可以拆分出来一个新的类</p>
+<hr>
+<p>性能模式！</p>
+<h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><p>有一些特殊的类，必须保证他们在系统中只存在一个实例</p>
+<p>前面绕过new 为了解决紧耦合。现在绕过new为了保证只有一个。</p>
+<p>比如：线程池</p>
+<ol>
+<li>构造、拷贝构造设为私有</li>
+<li>一个静态变量、一个静态返回这个变量的函数。</li>
+<li>指针为空，第一次调用new</li>
+</ol>
+<p><strong>这样写不是线程安全的！！！！！！！</strong></p>
+<p>怎么办？</p>
+<p>加锁</p>
+<ol>
+<li><p>互斥锁</p>
+<p>效率太低！！！</p>
+</li>
+<li><p>双检查锁</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ptr == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">    loc.lock();</span><br><span class="line">    <span class="keyword">if</span>(ptr == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        <span class="keyword">new</span>……………</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ptr;</span><br></pre></td></tr></table></figure>
+<p>可能会导致双检查锁失效。reorder问题</p>
+<p>new假定的顺序：先分配地址、再调用构造器、把分配的地址给ptr</p>
+<p>但是cpu层面：可能是先分配地址、把地址给ptr、然后调用构造器。</p>
+<p>解决：volatile，加上这个，编译器就知道不能优化他，不能reorder</p>
+<p>C++11里：atomic_thread_fence</p>
+</li>
+</ol>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p>共享技术有效的支持大量细粒度的对象</p>
+<p>如果没有就创建然后放到池里，有的话直接返回</p>
+<hr>
+<p>接口隔离模式</p>
+<p>添加一层间接接口，来隔离紧密相关的接口</p>
+<h2 id="门面模式"><a href="#门面模式" class="headerlink" title="门面模式"></a>门面模式</h2><p>为子系统中的一组接口提供一个稳定的界面。</p>
+<p>内部与外部客户程序来说，达到了一种解耦的效果</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>对象创建开销很大、需要进程外的访问、某些操作需要安全控制 等 会对系统结构带来很多麻烦</p>
+<p>为其他对象提供一种代理以控制对这个对象的访问</p>
+<p>真实 要访问的类：realObject、 继承Iobject</p>
+<p>现在创建一个代理类：proxyObject 也继承Iobject 访问realObject</p>
+<p>让用户感觉就是访问的realObject</p>
+<p>分布式系统里常用</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>A：之前的接口</p>
+<p>B：目标接口（新接口）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> fata)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">adapter</span> :</span> <span class="keyword">public</span> B&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    A* a;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    B(A* asd)&#123;</span><br><span class="line">        a = asd;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">()</span></span>&#123;</span><br><span class="line">        a-&gt; fun();</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><p>多个对象互相关联、交互的情况</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://example.com/2021/07/05/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="example.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/ACM/">ACM</a><small>4</small></li>
+  
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ICPC/">ICPC</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/tags/%E5%80%8D%E5%A2%9E/">倍增</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 ldk
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

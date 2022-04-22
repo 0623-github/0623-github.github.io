@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>洛谷--树形dp--Appleman and Tree | ldk博博博客</title>
+  <meta name="author" content="ldk">
+  
+  <meta name="description" content="ldk的博客">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="洛谷--树形dp--Appleman and Tree"/>
+  <meta property="og:site_name" content="ldk博博博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ldk博博博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-ACM/洛谷--树形dp--Appleman and Tree" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2020-12-21T14:08:49.000Z"><a href="/2020/12/21/ACM/%E6%B4%9B%E8%B0%B7--%E6%A0%91%E5%BD%A2dp--Appleman%20and%20Tree/">2020-12-21</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">洛谷--树形dp--Appleman and Tree</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="CF461B-Appleman-and-Tree"><a href="#CF461B-Appleman-and-Tree" class="headerlink" title="CF461B Appleman and Tree"></a>CF461B Appleman and Tree</h2><p>一棵树中有一些点是黑色，剩下点是白色。让删除一些边，使得剩余的每个连通块中有且仅有$1$个黑色的点。</p>
+<p>问：有多少种删除的方法。</p>
+<p>点的数量：$1e5$</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>一眼树形dp，状态表示肯定是：$dp[100000][2]$;</p>
+<ul>
+<li>$dp[x][0]$表示$x$所在的连通块中暂时没有黑色的种类数。</li>
+<li>$dp[x][1]$表示$x$所在的连通块中有一个黑色的种类数。</li>
+</ul>
+<p>于是转移怎么转移？我懵住了。</p>
+<p>设$v$是$x$的儿子。</p>
+<ol>
+<li><p>计算$dp[x][0]$：$dp[x][0] = dp[x][0] * (dp[v][0] + dp[v][1])$ </p>
+<p>表示此时$x$连通块中没有黑色，此时，他的儿子如果也没有黑色，那么直接连到$x$上面。如果$x$有$1$个黑色，那么断开这条边。</p>
+</li>
+<li><p>计算$dp[x][1]$：$dp[x][1] = dp[x][0] <em> dp[v][1] + dp[x][1] </em> (dp[v][0] + dp[v][1])$</p>
+<p>意思是：$x$的连通块此时有$1$个点为黑色包含两种情况：</p>
+<ol>
+<li>$x$的连通块之前已经有$1$个点为黑色，他的儿子如果没有黑色，那么直接连到$x$上面。如果$x$有$1$个黑色，那么断开这条边。</li>
+<li>$x$的连通块之前没有黑色，那么他的儿子必须有$1$个黑色连到$x$上面。</li>
+</ol>
+</li>
+</ol>
+<p>以上是我的理解，做的时候转移这里懵住了。<del>很是菜。。</del></p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,ll&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mkp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sd second</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> inf = <span class="number">0x3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">105</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vv[maxn];</span><br><span class="line">ll dp[maxn][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	dp[x][a[x]]= <span class="number">1</span>;</span><br><span class="line">	dp[x][a[x]^<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vv[x].size(); i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v = vv[x][i];</span><br><span class="line">		dfs(v);</span><br><span class="line">			dp[x][<span class="number">1</span>] = dp[x][<span class="number">1</span>] * (dp[v][<span class="number">0</span>] + dp[v][<span class="number">1</span>]) % mod + dp[x][<span class="number">0</span>] * dp[v][<span class="number">1</span>] % mod;</span><br><span class="line">			dp[x][<span class="number">1</span>] %= mod;</span><br><span class="line">			dp[x][<span class="number">0</span>] = dp[x][<span class="number">0</span>] * (dp[v][<span class="number">0</span>] + dp[v][<span class="number">1</span>]) % mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> p;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;p);</span><br><span class="line">		p ++ ;</span><br><span class="line">		vv[p].pb(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n; i++ )</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, dp[<span class="number">1</span>][<span class="number">1</span>] % mod);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/ACM/">ACM</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://example.com/2020/12/21/ACM/%E6%B4%9B%E8%B0%B7--%E6%A0%91%E5%BD%A2dp--Appleman%20and%20Tree/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="example.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/ACM/">ACM</a><small>4</small></li>
+  
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ICPC/">ICPC</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/tags/%E5%80%8D%E5%A2%9E/">倍增</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 ldk
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>io多路复用 | ldk博博博客</title>
+  <meta name="author" content="ldk">
+  
+  <meta name="description" content="ldk的博客">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="io多路复用"/>
+  <meta property="og:site_name" content="ldk博博博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ldk博博博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Python/io多路复用" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-01T01:39:39.000Z"><a href="/2021/07/01/Python/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">2021-07-01</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">io多路复用</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>Windows、Linux、Unix 操作系统可用</p>
+<p><strong>select模块</strong></p>
+<p>select函数返回值是3个列表</p>
+<p>readtable、writetable、excepttable</p>
+<p>读、写、错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import select</span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ip &#x3D; &#39;0.0.0.0&#39;</span><br><span class="line">port &#x3D; 7777</span><br><span class="line">listen_fd &#x3D; socket.socket(socket.AF_INET,socket.SOCK_STREAM,0)</span><br><span class="line">listen_fd.setblocking(False)</span><br><span class="line">listen_fd.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, True)</span><br><span class="line">listen_fd.bind((ip,port))</span><br><span class="line">listen_fd.listen(5)</span><br><span class="line">fdlist &#x3D; [listen_fd,]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">	r_tuple, w_tuple, x_tuple &#x3D; select.select(fdlist,[],[],1)</span><br><span class="line">	for r in r_tuple:</span><br><span class="line">		if r &#x3D;&#x3D; listen_fd:</span><br><span class="line">			con_fd, addr &#x3D; r.accept()</span><br><span class="line">			con_fd.setblocking(False)</span><br><span class="line">			fdlist.append(con_fd)</span><br><span class="line">			print(addr)</span><br><span class="line">		else:</span><br><span class="line">			data &#x3D; r.recv(1000).decode()</span><br><span class="line">			if data &#x3D;&#x3D; &#39;&#39;:</span><br><span class="line">				r.close()</span><br><span class="line">				fdlist.remove(r)</span><br><span class="line">			else:</span><br><span class="line">				print(data)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h2><p>Linux、Unix下可使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">p = select.poll() <span class="comment"># 创建poll</span></span><br><span class="line">p.register(fd, event) <span class="comment"># 注册关注的io事件  event:关注的事件类型(POLLIN, POLLOUT, POLLERR, POLLHUP)</span></span><br><span class="line">p.unregister(fd) <span class="comment"># 取消对IO的关注</span></span><br><span class="line">events = p.poll() <span class="comment"># 阻塞等待IO事件发生 events遍历：</span></span><br><span class="line"><span class="keyword">for</span> fd,eventid <span class="keyword">in</span> events:</span><br><span class="line">    <span class="comment"># </span></span><br></pre></td></tr></table></figure>
+<h2 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h2><p>只有Linux下可以用</p>
+<p>效率高、检测的数量多。</p>
+<p>边缘触发方式（ET）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Python/">Python</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://example.com/2021/07/01/Python/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="example.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/ACM/">ACM</a><small>4</small></li>
+  
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ICPC/">ICPC</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/tags/%E5%80%8D%E5%A2%9E/">倍增</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 ldk
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

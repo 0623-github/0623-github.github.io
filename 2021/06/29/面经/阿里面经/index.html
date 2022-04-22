@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>阿里面经 | ldk博博博客</title>
+  <meta name="author" content="ldk">
+  
+  <meta name="description" content="ldk的博客">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="阿里面经"/>
+  <meta property="og:site_name" content="ldk博博博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ldk博博博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-面经/阿里面经" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-06-29T02:22:23.000Z"><a href="/2021/06/29/%E9%9D%A2%E7%BB%8F/%E9%98%BF%E9%87%8C%E9%9D%A2%E7%BB%8F/">2021-06-29</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">阿里面经</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><p>面试官是个小姐姐~</p>
+<h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p>一个数组a，找到最大的$a[i] * a[j] - a[i] + a[j]$是多少 $i != j$</p>
+<p>很显然公式化简为：$(a[i] + 1) * (a[j] - 1) + 1$</p>
+<p>所以可得：$a[i]$和$a[j]$同时最大或最小（负数）</p>
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>求$[L,R]$中二进制形式下1的个数等于k的数字有多少个</p>
+<p>明显的数位dp</p>
+<p>变为：$[0,R]-[0,L-1]$</p>
+<p>即实现函数求$[0,x]$中二进制形式下1的个数等于k的数字有多少个</p>
+<p>转移方程：</p>
+<p>$a$数组是x的二进制形式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a[i] == <span class="number">0</span>)</span><br><span class="line">    dp[i][j][<span class="number">1</span>] = dp[i<span class="number">-1</span>][j][<span class="number">1</span>];</span><br><span class="line">    dp[i][j][<span class="number">0</span>] = dp[i<span class="number">-1</span>][j][<span class="number">0</span>] + dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(a[i] == <span class="number">1</span>)</span><br><span class="line">    dp[i][j][<span class="number">1</span>] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">    dp[i][j][<span class="number">0</span>] = dp[i<span class="number">-1</span>][j][<span class="number">0</span>] + dp[i<span class="number">-1</span>][j][<span class="number">1</span>] + dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h3><p>第三题让写了个题：丑数，leetcode上的题</p>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><p>面试官超好，有提示，感觉比较温柔</p>
+<h3 id="算法题："><a href="#算法题：" class="headerlink" title="算法题："></a>算法题：</h3><p>有n个岛，需要把岛联通（也就是建n-1条路），有m条路可修建。</p>
+<p>每条路有两个属性：(val, cost)</p>
+<ul>
+<li>val代表 这条路的舒适度</li>
+<li>cost代表 修建这条路的花费</li>
+</ul>
+<p>最后总的舒适度为：所有修建路的舒适度的最小值</p>
+<p>问：现在可最多花费C，总舒适度最大可以是多少</p>
+<p>很显然，，让最小值最大——- <strong>二分</strong></p>
+<p>所以就是二分+最小生成树check</p>
+<h3 id="基础题："><a href="#基础题：" class="headerlink" title="基础题："></a>基础题：</h3><p>sql建表：</p>
+<p>微博上有普通用户和大V，大V只需要知道关注自己的人数，普通用户需要知道自己关注了哪些大V</p>
+<p>设计模式：</p>
+<p>需要统计一个接口在1s内使用的次数</p>
+<p>答：一个工厂类，每次使用都从这个类构造。</p>
+<p>但如果不来回的创建销毁，一直使用怎么办？（也就是池）就像线程池那样 创建好 使用时直接用 不销毁</p>
+<p>答：单例模式接口里使用单例模式统计调用的个数</p>
+<hr>
+<p>不记得了。。。。想起来了补</p>
+<h2 id="三面"><a href="#三面" class="headerlink" title="三面"></a>三面</h2><p>面试官比较高冷、严肃</p>
+<ol>
+<li>acm有什么用？为什么要搞acm？</li>
+<li>从acm得到了什么？</li>
+<li>自己的优缺点？</li>
+<li>自己在acm队里有什么作用</li>
+<li>acm队伍的排名（学校、ICPC）</li>
+<li>高考分数、哪科考好了、哪科没考好</li>
+<li>学校里成绩、哪科学的好、哪科学不好、分数</li>
+<li>除了学习还干什么？</li>
+<li>技术栈是Java没问题吧</li>
+</ol>
+<hr>
+<p>不记得了。。。。想起来了补</p>
+<h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><ol>
+<li>了解阿里健康的产品吗？医鹿app</li>
+<li>为什么选择广州</li>
+<li>最有成就感的事</li>
+<li>acm为什么没拿金，有希望吗</li>
+<li>以后会想着去北京、上海发展、定居吗</li>
+<li>之前有拿到offer吗</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://example.com/2021/06/29/%E9%9D%A2%E7%BB%8F/%E9%98%BF%E9%87%8C%E9%9D%A2%E7%BB%8F/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="example.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/ACM/">ACM</a><small>4</small></li>
+  
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ICPC/">ICPC</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/tags/%E5%80%8D%E5%A2%9E/">倍增</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 ldk
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,967 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>ldk博博博客</title>
+  <meta name="author" content="ldk">
+  
+  <meta name="description" content="ldk的博客">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="ldk博博博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ldk博博博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-面向对象/设计模式" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-05T06:51:25.000Z"><a href="/2021/07/05/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">2021-07-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/07/05/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>抽象、复用</p>
+<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><ol>
+<li><p>依赖倒置原则</p>
+<p>高层模块不依赖于底层模块</p>
+</li>
+<li><p>开放封闭原则</p>
+<p>不要改变、要扩展</p>
+</li>
+<li><p>单一职责原则</p>
+<p>一个类应该只有一个引起它变化的原因</p>
+</li>
+<li><p>替换原则</p>
+<p>子类必须能替换他们的基类</p>
+</li>
+<li><p>接口隔离原则</p>
+<p>不应该强迫客户程序依赖它们不用的方法</p>
+<p>接口应该小而完备</p>
+<p>（尽量不要把他public出去）</p>
+</li>
+<li><p>优先使用对象组合而不是继承</p>
+</li>
+<li><p>封装变化点</p>
+</li>
+<li><p>针对接口编程、不是针对实现</p>
+<p>接口标准化！</p>
+</li>
+</ol>
+<p>在变化、稳定中间寻找隔离点然后分离他们</p>
+<h2 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h2><p>重构关键技法</p>
+<p>静态-&gt;动态</p>
+<p>早绑定-&gt;晚绑定</p>
+<p>继承-&gt;组合</p>
+<p>编译时依赖-&gt; 运行时依赖</p>
+<p>紧耦合-&gt;松耦合</p>
+<h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p>一个操作中的算法骨架，将一些步骤延迟到子类中。同时支持子类的变化</p>
+<p>这个算法骨架得是稳定的，字类重写的方法可以不稳定</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>有些对象使用的算法、把这些算法都编码到类中 可能更臃肿</p>
+<p>if……else if等等 这种好多可以用策略模式</p>
+<p>一系列算法是变化的，客户程序调用是稳定的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">1</span>)</span><br><span class="line">            …………</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">2</span>)</span><br><span class="line">            …………</span><br><span class="line">        …………</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 改为：</span></span><br><span class="line"><span class="function">class <span class="title">Sol</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">class <span class="title">sol1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">class <span class="title">sol2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">class <span class="title">sol3</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    Sol* fun;</span><br><span class="line">    A(Sol* a)&#123;</span><br><span class="line">        fun = a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">        fun.func();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">A <span class="title">a</span><span class="params">(<span class="keyword">new</span> sol1())</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>通知依赖关系、一个对象状态发生变化，所有对象都要得到通知</p>
+<p>例如进度条</p>
+<p>在划分文件类中含有一个Iprocess的抽象接口</p>
+<p>好多实际的进度条对象继承这个接口, 然后在那个class中 加个vector 遍历 调用update方法</p>
+<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>组合优于继承的典型体现！</p>
+<p>同时继承和组合的，基本都是装饰模式</p>
+<p>主体操作和扩展操作应该分开继承</p>
+<p>在接口上</p>
+<p>A* a</p>
+<p>B* b(a)</p>
+<p>C* c(a)</p>
+<p>B、C装饰A</p>
+<p>例如：</p>
+<p>图形有形状、颜色两种</p>
+<p>Shape抽象类、circle、Rectangle等继承Shape</p>
+<p>然后 RedCircle、BlackCircle继承Circle</p>
+<p>这样就有n*m个类</p>
+<p>如果用装饰器 就会有n+m个类</p>
+<h2 id="桥模式"><a href="#桥模式" class="headerlink" title="桥模式"></a>桥模式</h2><p>划清责任非常重要</p>
+<p>继承变为组合</p>
+<p>不同变化方向、就不应该放在一个类里</p>
+<p>抽象部分与实现部分分离 使他们能独立的变化</p>
+<p>例如：</p>
+<h2 id><a href="#" class="headerlink" title></a><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span> <span class="comment">// 抽象类</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drowcircle</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">drowRedCircle</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drowcircle</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">drowGreenCircle</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drowcircle</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span>&#123;</span></span><br><span class="line">    A* drowCircle;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">drow</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">circle</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">drow</span><span class="params">()</span></span>&#123;</span><br><span class="line">        drowCircle.drowCircle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></h2><h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method让一个类的实例化延迟。</p>
+<p>虚函数到子类</p>
+<p>（绕开new）</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>一系列相互依赖的对象</p>
+<p>高内聚、松耦合</p>
+<p>一个接口负责创建一系列的对象</p>
+<p>抽象工厂  可以创建好多个对象</p>
+<h2 id="原型模式-prototype"><a href="#原型模式-prototype" class="headerlink" title="原型模式 prototype"></a>原型模式 prototype</h2><p>把抽象类 和 工厂类合并  也就是没有工厂类，在抽象类里写个clone</p>
+<p>通过克隆自己来创建对象</p>
+<p>不能直接用原型的对象，原型对象只是用来供你克隆的，</p>
+<p>什么时候用？</p>
+<p>如果想要当前状态的这种类，当创建结构复杂的时候，只用创建一次 之后克隆这个就好了。</p>
+<p>需不需要考虑中间状态，保存中间状态。</p>
+<p>拥有稳定接口</p>
+<h2 id="构建器"><a href="#构建器" class="headerlink" title="构建器"></a>构建器</h2><p>创建一个复杂对象</p>
+<p>创建的各个部分经常面临着剧烈的变化，但是把他们组合在一起的算法相对稳定。 （跟模板方法是不是很像） </p>
+<p>同一个构建过程可以创建多个不同对象</p>
+<p>如果构建过程太多，可以拆分出来一个新的类</p>
+<hr>
+<p>性能模式！</p>
+<h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><p>有一些特殊的类，必须保证他们在系统中只存在一个实例</p>
+<p>前面绕过new 为了解决紧耦合。现在绕过new为了保证只有一个。</p>
+<p>比如：线程池</p>
+<ol>
+<li>构造、拷贝构造设为私有</li>
+<li>一个静态变量、一个静态返回这个变量的函数。</li>
+<li>指针为空，第一次调用new</li>
+</ol>
+<p><strong>这样写不是线程安全的！！！！！！！</strong></p>
+<p>怎么办？</p>
+<p>加锁</p>
+<ol>
+<li><p>互斥锁</p>
+<p>效率太低！！！</p>
+</li>
+<li><p>双检查锁</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ptr == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">    loc.lock();</span><br><span class="line">    <span class="keyword">if</span>(ptr == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        <span class="keyword">new</span>……………</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ptr;</span><br></pre></td></tr></table></figure>
+<p>可能会导致双检查锁失效。reorder问题</p>
+<p>new假定的顺序：先分配地址、再调用构造器、把分配的地址给ptr</p>
+<p>但是cpu层面：可能是先分配地址、把地址给ptr、然后调用构造器。</p>
+<p>解决：volatile，加上这个，编译器就知道不能优化他，不能reorder</p>
+<p>C++11里：atomic_thread_fence</p>
+</li>
+</ol>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p>共享技术有效的支持大量细粒度的对象</p>
+<p>如果没有就创建然后放到池里，有的话直接返回</p>
+<hr>
+<p>接口隔离模式</p>
+<p>添加一层间接接口，来隔离紧密相关的接口</p>
+<h2 id="门面模式"><a href="#门面模式" class="headerlink" title="门面模式"></a>门面模式</h2><p>为子系统中的一组接口提供一个稳定的界面。</p>
+<p>内部与外部客户程序来说，达到了一种解耦的效果</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>对象创建开销很大、需要进程外的访问、某些操作需要安全控制 等 会对系统结构带来很多麻烦</p>
+<p>为其他对象提供一种代理以控制对这个对象的访问</p>
+<p>真实 要访问的类：realObject、 继承Iobject</p>
+<p>现在创建一个代理类：proxyObject 也继承Iobject 访问realObject</p>
+<p>让用户感觉就是访问的realObject</p>
+<p>分布式系统里常用</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>A：之前的接口</p>
+<p>B：目标接口（新接口）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> fata)</span> </span>= <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">adapter</span> :</span> <span class="keyword">public</span> B&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    A* a;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    B(A* asd)&#123;</span><br><span class="line">        a = asd;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">()</span></span>&#123;</span><br><span class="line">        a-&gt; fun();</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><p>多个对象互相关联、交互的情况</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Python/python协程" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-03T02:51:24.000Z"><a href="/2021/07/03/Python/python%E5%8D%8F%E7%A8%8B/">2021-07-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/07/03/Python/python%E5%8D%8F%E7%A8%8B/">python协程</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>python中可以用yield实现</p>
+<p>或：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> greenlet <span class="keyword">import</span> greenlet</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func01</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(x)</span><br><span class="line">        g2.switch(<span class="number">2</span>)</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func02</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(x)</span><br><span class="line">        g1.switch()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g1 = greenlet(func01)</span><br><span class="line">g2 = greenlet(func02)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g1.switch(<span class="number">1</span>) <span class="comment"># 如果 func有参数 在这里传递</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Linux/Linux命令入门" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-01T13:06:00.000Z"><a href="/2021/07/01/Linux/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/">2021-07-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/07/01/Linux/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/">Linux命令入门</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="终端命令格式"><a href="#终端命令格式" class="headerlink" title="终端命令格式"></a>终端命令格式</h2><p>command [-options] [parameter]</p>
+<p>命令名 选项 参数</p>
+<h2 id="查阅帮助信息："><a href="#查阅帮助信息：" class="headerlink" title="查阅帮助信息："></a>查阅帮助信息：</h2><p>command —help</p>
+<p>man command</p>
+<h1 id="文件目录常用命令"><a href="#文件目录常用命令" class="headerlink" title="文件目录常用命令"></a>文件目录常用命令</h1><ol>
+<li><p>ls</p>
+<ul>
+<li>-a 所有子目录与文件、包括隐藏的</li>
+<li>-l 以列表形式显示详细信息</li>
+<li>-h 配合-l 人性化的显示文件大小</li>
+</ul>
+</li>
+<li><p>cd</p>
+</li>
+<li><p>touch</p>
+</li>
+<li><p>mkdir</p>
+<ul>
+<li>-p 递归创建目录</li>
+</ul>
+</li>
+<li><p>rm</p>
+<ul>
+<li>-f 强制删除，忽略不存在的文件</li>
+<li>-r 递归删除目录下的内容，删除文件夹时添加</li>
+</ul>
+</li>
+<li><p>tree [目录名] </p>
+<p>​    以树状列出文件目录结构</p>
+<ul>
+<li>-d 只显示目录</li>
+</ul>
+</li>
+<li><p>cp 源文件 目标文件</p>
+<ul>
+<li>-i 覆盖文件前提示</li>
+<li>-r 若是目录文件，递归复制目录下的所有子目录和文件</li>
+</ul>
+</li>
+<li><p>mv 源文件 目标文件</p>
+<ul>
+<li>-i 覆盖文件前提示</li>
+</ul>
+</li>
+<li><p>cat 文件名 </p>
+<ul>
+<li>-b 对非空输出行编号</li>
+<li>-n 对输出的所有行编号</li>
+</ul>
+</li>
+<li><p>more 文件名</p>
+<p>分屏显示文件内容</p>
+<ul>
+<li>空格 显示下一屏</li>
+<li>enter 滚动一行</li>
+<li>b 回滚一屏</li>
+<li>f 前滚一屏</li>
+<li>q 退出</li>
+<li>/word 搜索word字符串</li>
+</ul>
+</li>
+<li><p>grep 搜索文本 文件名</p>
+<p>文本搜索工具</p>
+<ul>
+<li>-n 显示匹配行以及行号</li>
+<li>-v 显示不包含匹配文本的所有行（求反）</li>
+<li>-i 忽略大小写</li>
+</ul>
+<p>常用两种查找模式</p>
+<ul>
+<li>^a 搜索以a开头的行</li>
+<li>ke$ 搜索以ke结束的行</li>
+</ul>
+</li>
+<li><p>echo 文字内容</p>
+<p>显示指定的文字，通常和重定向一起使用</p>
+</li>
+<li><p>重定向 &gt;, &gt;&gt;</p>
+<p>‘&gt;’ 表示输出，会覆盖原有内容</p>
+<p>‘&gt;&gt;’ 表示追加，把内容追加到文件末尾</p>
+</li>
+<li><p>管道|</p>
+<p>一个命令的输出通过管道作为另一个命令的输入</p>
+</li>
+</ol>
+<h1 id="远程管理常用命令"><a href="#远程管理常用命令" class="headerlink" title="远程管理常用命令"></a>远程管理常用命令</h1><ol>
+<li><p>shutdown</p>
+<p>关机、重启</p>
+<ul>
+<li>-r 重新启动</li>
+<li>-c 取消之前指定的关机计划</li>
+</ul>
+<p>不指定选项和参数，默认1分钟后关闭电脑</p>
+<blockquote>
+<p>shutdown now  表示现在</p>
+<p>shutdown 20:25 表示在20:25关机</p>
+<p>shutdown +10  表示10分钟后关机</p>
+<p>shutdown -c 取消之前指定的关机计划</p>
+</blockquote>
+</li>
+<li><p>ifconfig</p>
+<p>查看计算机当前网卡信息</p>
+</li>
+<li><p>ssh 用户名@ip</p>
+</li>
+</ol>
+<p><del>待补</del></p>
+<h1 id="用户权限相关命令"><a href="#用户权限相关命令" class="headerlink" title="用户权限相关命令"></a>用户权限相关命令</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>用户</strong></p>
+<p>不管是由本机还是远程登录，每个系统都必须拥有一个账号，并且对于不同的系统资源有不同的权限</p>
+<p>权限：</p>
+<p><img src="/2021/07/01/Linux/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/权限.png" alt="权限"></p>
+</li>
+<li><p><strong>组</strong></p>
+<p>不同的用户添加到对应的组中，不用为每个用户设置权限。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Python/io多路复用" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-01T01:39:39.000Z"><a href="/2021/07/01/Python/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">2021-07-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/07/01/Python/io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">io多路复用</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>Windows、Linux、Unix 操作系统可用</p>
+<p><strong>select模块</strong></p>
+<p>select函数返回值是3个列表</p>
+<p>readtable、writetable、excepttable</p>
+<p>读、写、错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import select</span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ip &#x3D; &#39;0.0.0.0&#39;</span><br><span class="line">port &#x3D; 7777</span><br><span class="line">listen_fd &#x3D; socket.socket(socket.AF_INET,socket.SOCK_STREAM,0)</span><br><span class="line">listen_fd.setblocking(False)</span><br><span class="line">listen_fd.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, True)</span><br><span class="line">listen_fd.bind((ip,port))</span><br><span class="line">listen_fd.listen(5)</span><br><span class="line">fdlist &#x3D; [listen_fd,]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">	r_tuple, w_tuple, x_tuple &#x3D; select.select(fdlist,[],[],1)</span><br><span class="line">	for r in r_tuple:</span><br><span class="line">		if r &#x3D;&#x3D; listen_fd:</span><br><span class="line">			con_fd, addr &#x3D; r.accept()</span><br><span class="line">			con_fd.setblocking(False)</span><br><span class="line">			fdlist.append(con_fd)</span><br><span class="line">			print(addr)</span><br><span class="line">		else:</span><br><span class="line">			data &#x3D; r.recv(1000).decode()</span><br><span class="line">			if data &#x3D;&#x3D; &#39;&#39;:</span><br><span class="line">				r.close()</span><br><span class="line">				fdlist.remove(r)</span><br><span class="line">			else:</span><br><span class="line">				print(data)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h2><p>Linux、Unix下可使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">p = select.poll() <span class="comment"># 创建poll</span></span><br><span class="line">p.register(fd, event) <span class="comment"># 注册关注的io事件  event:关注的事件类型(POLLIN, POLLOUT, POLLERR, POLLHUP)</span></span><br><span class="line">p.unregister(fd) <span class="comment"># 取消对IO的关注</span></span><br><span class="line">events = p.poll() <span class="comment"># 阻塞等待IO事件发生 events遍历：</span></span><br><span class="line"><span class="keyword">for</span> fd,eventid <span class="keyword">in</span> events:</span><br><span class="line">    <span class="comment"># </span></span><br></pre></td></tr></table></figure>
+<h2 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h2><p>只有Linux下可以用</p>
+<p>效率高、检测的数量多。</p>
+<p>边缘触发方式（ET）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Python/python基础" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-06-30T09:26:36.000Z"><a href="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/">2021-06-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/">python基础</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os <span class="comment"># 导入os包</span></span><br><span class="line">os.mkdir 创建一个目录</span><br><span class="line">os.mkdirs 创建多个目录</span><br><span class="line">os.listdir 查看所有文件</span><br><span class="line">os.path.isfile 判断是不是文件</span><br><span class="line">os.path.isdir 判断是不是文件夹</span><br></pre></td></tr></table></figure>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>不可变序列容器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">string.isspace() <span class="comment"># 只包含空格返回True</span></span><br><span class="line">string.isalnum() <span class="comment"># 至少有一个字符，所有字符都是字母或数字返回True</span></span><br><span class="line">string.isalpha() <span class="comment"># 至少有一个字符，所有字符都是字母返回True</span></span><br><span class="line">string.isdecimal() <span class="comment"># 只包含数字返回True 全角数字</span></span><br><span class="line">string.isdigit（） <span class="comment"># 只包含数字返回True 全角数字、(1)、/u00b2</span></span><br><span class="line">string.isnumeric() <span class="comment"># 只包含数字返回True 全角数字、汉字数字</span></span><br><span class="line">string.istitle() <span class="comment"># 是标题返回True 每个单词首字母大写</span></span><br><span class="line">string.islower() <span class="comment"># 都是小写</span></span><br><span class="line">string.isupper() <span class="comment"># 都是大写</span></span><br><span class="line">string.endswith(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">string.startswith()</span><br><span class="line">string.find(<span class="built_in">str</span>,start=<span class="number">0</span>,end=<span class="built_in">len</span>(string)) <span class="comment"># 返回开始的索引值</span></span><br><span class="line">string.replace(oldstr,newstr,num=string.count(old)) <span class="comment"># 把oldstr替换为newstr 最多替换num个</span></span><br><span class="line"></span><br><span class="line">string.partition(<span class="built_in">str</span>) <span class="comment"># 把字符串string分成一个3元素的元组（str前面、str、后面）</span></span><br><span class="line">string.rpartition(<span class="built_in">str</span>)</span><br><span class="line">string.split(<span class="built_in">str</span>=<span class="string">&quot;&quot;</span>,num) <span class="comment"># 以str为分隔符拆分</span></span><br><span class="line">string.join(buf)</span><br><span class="line"></span><br><span class="line">encode() <span class="comment"># 转为字节码</span></span><br><span class="line">decode() <span class="comment"># 字节码转为字符串</span></span><br></pre></td></tr></table></figure>
+<p>还有一些懒得在上面写了：</p>
+<p><img src="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/字符串.png" alt="字符串函数"></p>
+<p><img src="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/字符串2.png" alt="字符串函数2"></p>
+<p><img src="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/字符串3.png" alt="字符串3"></p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>可变容器</p>
+<p>用[]</p>
+<ol>
+<li><p>list.append(元素) 在末尾添加元素</p>
+</li>
+<li><p>list.insert(索引, 元素)</p>
+</li>
+<li><p>list.remove(元素)</p>
+</li>
+<li><p>del 列表名[索引或切片] </p>
+</li>
+<li><p>深拷贝 </p>
+<ul>
+<li>import copy</li>
+<li>deep = copy.deepcopy(list1)</li>
+</ul>
+</li>
+<li><p>列表推导式</p>
+<p>变量 = [表达式 for 变量 in 可迭代对象 if 条件]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">result = [r+c <span class="keyword">for</span> r <span class="keyword">in</span> list1 <span class="keyword">for</span> c <span class="keyword">in</span> list2]</span><br><span class="line"></span><br><span class="line">相当于：</span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> list1:</span><br><span class="line">	<span class="keyword">for</span> c <span class="keyword">in</span> list2:</span><br><span class="line">		r + c</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><p><img src="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/列表.png" alt="列表常用函数"></p>
+<h2 id="元组tuple"><a href="#元组tuple" class="headerlink" title="元组tuple"></a>元组tuple</h2><p>一系列变量组成的不可变容器</p>
+<p>用()</p>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p>一系列键值对组成的可变映射</p>
+<p>用{}</p>
+<p>字典名 = {键1：值1，……}</p>
+<p>遍历字典：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 键、值 <span class="keyword">in</span> 字典名.items():</span><br><span class="line">	、、、、、、</span><br><span class="line"></span><br><span class="line">dict1.keys()</span><br><span class="line">dict1.values()</span><br><span class="line"><span class="built_in">dict</span>.clear()</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/06/30/Python/python%E5%9F%BA%E7%A1%80/字典.png" alt="字典函数"></p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    代码</span><br><span class="line"><span class="keyword">except</span> 异常<span class="number">1</span>:</span><br><span class="line">    </span><br><span class="line"><span class="keyword">except</span> 异常<span class="number">2</span>:</span><br><span class="line">    </span><br><span class="line"><span class="keyword">except</span> 异常<span class="number">3</span>:</span><br><span class="line">    </span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line">    </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    </span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<p>raise 语句来发射异常</p>
+<p>自定义异常自称自Exception</p>
+<h2 id="乱七八糟"><a href="#乱七八糟" class="headerlink" title="乱七八糟"></a>乱七八糟</h2><ol>
+<li><p>del 变量1，变量2</p>
+<p>引用计数-1 减到了0 销毁对象</p>
+</li>
+<li><p>空值对象None</p>
+</li>
+<li><p>数据类型</p>
+<ul>
+<li>int</li>
+<li>float</li>
+<li>complex  复数型</li>
+<li>bool</li>
+<li>String</li>
+<li>List  列表</li>
+<li>Tuple  元组</li>
+<li>Dictionary  字典</li>
+<li>Set  集合</li>
+<li>type（） 返回值为参数的数据类型</li>
+<li>isinstance(obj,type) 返回值obj的类型是不是type</li>
+</ul>
+</li>
+<li><p>运算符</p>
+<ul>
+<li>+、-、<em>、/、%、*</em>幂、//取整 </li>
+<li>a,b,c,d = 1,2,3,False</li>
+<li>+=、-=、<em>=、/=、%=、*</em>=、//=</li>
+<li>==、!=、&gt;、&gt;=、&lt;、&lt;=</li>
+<li>&amp;、|、^、~、&lt;&lt;、&gt;&gt;</li>
+<li>in、not in</li>
+<li>is、is not</li>
+</ul>
+</li>
+<li><p>map(函数，可迭代对象)</p>
+<p>使用可迭代对象中的每个元素调用函数，将返回值作为新的可迭代对象。</p>
+</li>
+<li><p>filter(函数，可迭代对象)</p>
+<p>根据条件筛选可迭代对象中的元素，返回值为新可迭代对象</p>
+</li>
+<li><p>sorted(可迭代对象，key=函数，reverse=bool)</p>
+<p>排序，返回值为排序结果</p>
+</li>
+<li><p>max(可迭代对象，key=函数)</p>
+</li>
+<li><p>min(可迭代对象，key=函数)</p>
+</li>
+</ol>
+<h2 id="通用操作"><a href="#通用操作" class="headerlink" title="通用操作"></a>通用操作</h2><ol>
+<li>random模块<ul>
+<li>random.random() 生成一个0到1的随机浮点数</li>
+<li>random.uniform(a, b) 生成一个指定范围的随机浮点数</li>
+<li>random.randint(a,b) 生成一个指定范围内的整数</li>
+<li>random.choice(sequence) 从序列中随机获取一个元素</li>
+</ul>
+</li>
+<li>切片slice<ul>
+<li>容器[开始索引：结束索引：步长]</li>
+</ul>
+</li>
+<li>内建函数<ul>
+<li>len(x)</li>
+<li>max(x)</li>
+<li>min(x)</li>
+<li>sum(x)</li>
+</ul>
+</li>
+</ol>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h3 id="一些变量"><a href="#一些变量" class="headerlink" title="一些变量"></a>一些变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__all__  <span class="comment"># 变量可导出成员 对 from xx import * 有效</span></span><br><span class="line">__doc__  <span class="comment"># 文档字符串</span></span><br><span class="line">__file__ <span class="comment"># 模块对应的文件路径名</span></span><br><span class="line">__name__ <span class="comment"># 模块自身名字，可以判断是否是main</span></span><br></pre></td></tr></table></figure>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>把模块分文件夹进行管理</p>
+<p><code>__init__.py</code>文件在包被加载时自动调用</p>
+<p><code>__all__</code>记录from包import * 语句需要导入的模块</p>
+<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><p>每一次对过程的重复成为一次迭代，每一次迭代得到的结果作为下一次迭代的初始值。</p>
+<h3 id="可迭代对象iterable"><a href="#可迭代对象iterable" class="headerlink" title="可迭代对象iterable"></a>可迭代对象iterable</h3><p>具有 <code>__iter__</code>函数的对象，可以返回迭代器对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span>(<span class="params">self</span>):</span></span><br><span class="line">        retrun 迭代器</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 可迭代对象:</span><br><span class="line">    语句</span><br></pre></td></tr></table></figure>
+<h3 id="迭代器对象iterator"><a href="#迭代器对象iterator" class="headerlink" title="迭代器对象iterator"></a>迭代器对象iterator</h3><p>可以被<code>__next__</code>函数调用并返回下一个值的对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> 没有元素:</span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br><span class="line">        <span class="keyword">return</span> 聚合对象元素</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNumbers</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span>(<span class="params">self</span>):</span></span><br><span class="line">    self.a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> self</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__next__</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.a &lt;= <span class="number">20</span>:</span><br><span class="line">      x = self.a</span><br><span class="line">      self.a += <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> x</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">raise</span> StopIteration</span><br><span class="line"> </span><br><span class="line">myclass = MyNumbers()</span><br><span class="line">myiter = <span class="built_in">iter</span>(myclass)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> myiter:</span><br><span class="line">  print(x)</span><br></pre></td></tr></table></figure>
+<h2 id="生成器generator"><a href="#生成器generator" class="headerlink" title="生成器generator"></a>生成器generator</h2><p>含有yield语句的函数，返回值为生成器对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span>(<span class="params">n</span>):</span> <span class="comment"># 生成器函数 - 斐波那契</span></span><br><span class="line">    a, b, counter = <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">if</span> (counter &gt; n): </span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">yield</span> a</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">        counter += <span class="number">1</span></span><br><span class="line">f = fibonacci(<span class="number">10</span>) <span class="comment"># f 是一个迭代器，由生成器返回生成</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span> (<span class="built_in">next</span>(f), end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        sys.exit()</span><br></pre></td></tr></table></figure>
+<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sum</span> = <span class="keyword">lambda</span> a, b : a + b</span><br><span class="line"><span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>三要素：</p>
+<ol>
+<li>必须有一个内嵌函数</li>
+<li>内嵌函数必须引用外部函数中变量</li>
+<li>外部函数返回值为内嵌函数</li>
+</ol>
+<p>实现装饰器！</p>
+<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><p>在不改变原函数的调用以及内部代码的情况下，为其添加新功能的函数。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun_decorator</span>(<span class="params">func</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">func2</span>(<span class="params">name</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;ldk:&#123;0&#125;&#x27;</span>.<span class="built_in">format</span>(func(name))</span><br><span class="line">	<span class="keyword">return</span> func2</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getname</span>(<span class="params">name</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;姓名：&#123;0&#125;,&#123;0&#125;&quot;</span>.<span class="built_in">format</span>(name)</span><br><span class="line">getname = fun_decorator(getname)</span><br><span class="line">print(getname(<span class="string">&quot;moximoxi&quot;</span>))</span><br><span class="line">print(  fun_decorator(getname)(<span class="string">&#x27;moximoxi&#x27;</span>) )</span><br><span class="line">输出结果：</span><br><span class="line">姓名：moximoxi,moximoxi</span><br><span class="line">ldk:姓名：moximoxi,moximoxi</span><br></pre></td></tr></table></figure>
+<p>所以@fun_decorator 有什么用？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ldk:姓名：moximoxi,moximoxi</span><br><span class="line">ldk:ldk:姓名：moximoxi,moximoxi</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun_decorator</span>(<span class="params">func</span>):</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">func2</span>(<span class="params">name</span>):</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;ldk:&#123;0&#125;&#x27;</span>.<span class="built_in">format</span>(func(name))</span><br><span class="line">	<span class="keyword">return</span> func2</span><br><span class="line"></span><br><span class="line"><span class="meta">@fun_decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getname</span>(<span class="params">name</span>):</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;姓名：&#123;0&#125;,&#123;0&#125;&quot;</span>.<span class="built_in">format</span>(name)</span><br><span class="line">	</span><br><span class="line">print(getname(<span class="string">&quot;moximoxi&quot;</span>))</span><br><span class="line">print(  fun_decorator(getname)(<span class="string">&#x27;moximoxi&#x27;</span>) )</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">ldk:姓名：moximoxi,moximoxi</span><br><span class="line">ldk:ldk:姓名：moximoxi,moximoxi</span><br></pre></td></tr></table></figure>
+<p>加上@，说明已经被修饰了一次了</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Python/python套接字传输文件" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-06-30T09:25:36.000Z"><a href="/2021/06/30/Python/python%E5%A5%97%E6%8E%A5%E5%AD%97%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6/">2021-06-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/06/30/Python/python%E5%A5%97%E6%8E%A5%E5%AD%97%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6/">python套接字传输文件</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="实现功能"><a href="#实现功能" class="headerlink" title="实现功能"></a>实现功能</h2><ol>
+<li>查看文件夹下的文件</li>
+<li>下载文件</li>
+<li>上传文件</li>
+</ol>
+<p><strong>只有服务端代码，用的TCP测试工具进行测试</strong></p>
+<h2 id="传输数据格式"><a href="#传输数据格式" class="headerlink" title="传输数据格式"></a>传输数据格式</h2><ol>
+<li><p>查看文件：</p>
+<ul>
+<li>客户端发往服务端：1:filepath</li>
+<li>服务端发往客户端：文件个数:文件类型:文件名字|文件类型:文件名字|文件类型:文件名字|……</li>
+<li>冒号当分隔符用</li>
+</ul>
+</li>
+<li><p>下载文件：</p>
+<ul>
+<li><p>客户端发往服务端：2:filepath</p>
+</li>
+<li><p>服务端发往客户端：文件内容结尾标志</p>
+</li>
+</ul>
+</li>
+<li><p>上传：</p>
+<ul>
+<li>客户端发往服务端：3:filename:文件内容</li>
+</ul>
+</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Thread</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">os.mkdir 创建一个目录</span></span><br><span class="line"><span class="string">os.mkdirs 创建多个目录</span></span><br><span class="line"><span class="string">os.listdir 查看</span></span><br><span class="line"><span class="string">os.path.isfile</span></span><br><span class="line"><span class="string">os.path.isdir</span></span><br><span class="line"><span class="string">字符串.join(buf)</span></span><br><span class="line"><span class="string">字符串.endswith(&#x27;/&#x27;)</span></span><br><span class="line"><span class="string">encode</span></span><br><span class="line"><span class="string">decode</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">发送：</span></span><br><span class="line"><span class="string">len：dir：文件夹</span></span><br><span class="line"><span class="string">收到：</span></span><br><span class="line"><span class="string">1：filename</span></span><br><span class="line"><span class="string">2：</span></span><br><span class="line"><span class="string">3：filename: filedata</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">open(&#x27;./&#x27;,&#x27;r&#x27;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Server1</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">	<span class="string">&quot;&quot;&quot;docstring for Server1&quot;&quot;&quot;</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, ip= <span class="string">&#x27;0.0.0.0&#x27;</span>, port= <span class="number">7777</span>, filepath=<span class="string">&#x27;./ftp_server&#x27;</span></span>):</span></span><br><span class="line">		self.ip = ip</span><br><span class="line">		self.port = port</span><br><span class="line">		self.listen_fd = socket.socket(socket.AF_INET,socket.SOCK_STREAM,<span class="number">0</span>)</span><br><span class="line">		self.listen_fd.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR, <span class="literal">True</span>)</span><br><span class="line">		self.listen_fd.bind((ip,port))</span><br><span class="line">		self.listen_fd.listen(<span class="number">5</span>)</span><br><span class="line">		self.thread_list = []</span><br><span class="line">		<span class="keyword">if</span> filepath.endswith(<span class="string">&#x27;/&#x27;</span>):</span><br><span class="line">			filepath = filepath[:-<span class="number">1</span>]</span><br><span class="line">		self.filepath = filepath</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(filepath):</span><br><span class="line">			os.mkdir(filepath)</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">start</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">			con_fd,addr = self.listen_fd.accept()</span><br><span class="line">			<span class="comment"># addr 是个元组 0：ip  1：port</span></span><br><span class="line">			print(addr)</span><br><span class="line">			<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">				<span class="comment"># 通信</span></span><br><span class="line">				data = con_fd.recv()</span><br><span class="line"></span><br><span class="line">				<span class="keyword">pass</span></span><br><span class="line">			con_fd.close()</span><br><span class="line">			print(<span class="string">&quot;关闭&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">	1. 查看文件夹下的所有文件</span></span><br><span class="line"><span class="string">	2. 下载文件</span></span><br><span class="line"><span class="string">	3. shangchuan 文件</span></span><br><span class="line"><span class="string">	&quot;&quot;&quot;</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fun1</span>(<span class="params">self, filepath= <span class="string">&quot;&quot;</span></span>):</span></span><br><span class="line">		<span class="keyword">if</span> filepath == <span class="string">&quot;&quot;</span>:</span><br><span class="line">			filepath = self.filepath</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			filepath = self.filepath + <span class="string">&quot;/&quot;</span> + filepath</span><br><span class="line">		print(filepath)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> filepath.endswith(<span class="string">&quot;/&quot;</span>):</span><br><span class="line">			filepath = filepath[:-<span class="number">1</span>]</span><br><span class="line">		<span class="keyword">if</span> os.path.isdir(filepath):</span><br><span class="line">			lis = os.listdir(filepath)</span><br><span class="line">			print(lis)</span><br><span class="line">			ans = []</span><br><span class="line">			<span class="keyword">for</span> i <span class="keyword">in</span> lis:</span><br><span class="line">				<span class="keyword">if</span> os.path.isfile(filepath + <span class="string">&quot;/&quot;</span> + i):</span><br><span class="line">					ans.append(<span class="string">&#x27;dir:&#x27;</span> + i)</span><br><span class="line">				<span class="keyword">else</span>:</span><br><span class="line">					ans.append(<span class="string">&#x27;file:&#x27;</span> + i)</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">len</span>(lis)) + <span class="string">&#x27;:&#x27;</span> + <span class="string">&#x27;|&#x27;</span>.join(ans)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fun2</span>(<span class="params">self, con_fd, filepath</span>):</span></span><br><span class="line">		filepath = self.filepath +<span class="string">&quot;/&quot;</span>+ filepath</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(filepath):</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">		fd = <span class="built_in">open</span>(filepath,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">		<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">			data = fd.read(<span class="number">1000</span>)</span><br><span class="line">			<span class="keyword">if</span> data == <span class="string">&quot;&quot;</span>:</span><br><span class="line">				con_fd.send(<span class="string">&quot;#$@EOF@$#&quot;</span>.encode())</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				con_fd.send(data.encode())</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fun3</span>(<span class="params">self, con_fd, data</span>):</span></span><br><span class="line">		data = data[<span class="number">2</span>:]</span><br><span class="line"></span><br><span class="line">		print(data)</span><br><span class="line">		lis = data.split(<span class="string">&#x27;:&#x27;</span>)</span><br><span class="line">		filename = lis[<span class="number">0</span>]</span><br><span class="line">		data = <span class="string">&#x27;:&#x27;</span>.join(lis[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">		filepath = self.filepath + <span class="string">&#x27;/&#x27;</span> + filename</span><br><span class="line"></span><br><span class="line">		print(filepath)</span><br><span class="line">		fd = <span class="built_in">open</span>(filepath,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">		fd.write(data)</span><br><span class="line">		<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">			data = con_fd.recv(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">			data = data.decode()</span><br><span class="line">			<span class="keyword">if</span> data == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">				print(<span class="string">&#x27;传输完毕&#x27;</span>)</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				fd.write(data)</span><br><span class="line">		fd.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">self,con_fd</span>):</span></span><br><span class="line">		<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">			data = con_fd.recv(<span class="number">100</span>)</span><br><span class="line">			data = data.decode()</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> data.startswith(<span class="string">&#x27;1&#x27;</span>):</span><br><span class="line">				con_fd.send(self.fun1(data[<span class="number">2</span>:]).encode())</span><br><span class="line">			<span class="keyword">elif</span> data.startswith(<span class="string">&#x27;2&#x27;</span>):</span><br><span class="line">				self.fun2(con_fd,data[<span class="number">2</span>:])</span><br><span class="line">			<span class="keyword">elif</span> data.startswith(<span class="string">&#x27;3&#x27;</span>):</span><br><span class="line">				self.fun3(con_fd, data)</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				con_fd.close()</span><br><span class="line">				print(<span class="string">&#x27;客户端关闭&#x27;</span>)</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">start_thread</span>(<span class="params">self</span>):</span></span><br><span class="line">		<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">			con_fd, addr = self.listen_fd.accept()</span><br><span class="line">			print(addr,<span class="string">&quot;连接成功&quot;</span>)</span><br><span class="line">			th1 = Thread(target= self.func, args=(con_fd,))</span><br><span class="line">			th1.start()</span><br><span class="line">			self.thread_list.append(th1)</span><br><span class="line">			lis = []</span><br><span class="line">			<span class="keyword">for</span> i <span class="keyword">in</span> self.thread_list:</span><br><span class="line">				<span class="keyword">if</span> <span class="keyword">not</span> i.isAlive():</span><br><span class="line">					i.join()</span><br><span class="line">					lis.append(i)</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> i <span class="keyword">in</span> lis:</span><br><span class="line">				self.thread_list.remove(i)</span><br><span class="line"></span><br><span class="line">			print(<span class="string">&quot;数量：&quot;</span> + <span class="built_in">str</span>(<span class="built_in">len</span>(self.thread_list)))</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__del__</span>(<span class="params">self</span>):</span></span><br><span class="line">		self.listen_fd.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	tcp = Server1()</span><br><span class="line">	tcp.start_thread()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>刚接触python不久~加油！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-Python/Python线程" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-06-29T02:24:16.000Z"><a href="/2021/06/29/Python/Python%E7%BA%BF%E7%A8%8B/">2021-06-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/06/29/Python/Python%E7%BA%BF%E7%A8%8B/">Python线程</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="线程同步互斥方法"><a href="#线程同步互斥方法" class="headerlink" title="线程同步互斥方法"></a>线程同步互斥方法</h2><h3 id="线程Event"><a href="#线程Event" class="headerlink" title="线程Event"></a>线程Event</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Event</span><br><span class="line">e = Event()  <span class="comment"># 创建线程event对象</span></span><br><span class="line">e.wait(timeout) <span class="comment"># 阻塞等待e被set</span></span><br><span class="line">e.<span class="built_in">set</span>() <span class="comment"># 设置e 让wait结束阻塞</span></span><br><span class="line">e.clear() <span class="comment"># 使e回到未被设置状态</span></span><br><span class="line">e.is_set() <span class="comment"># 查看e 是否被设置</span></span><br></pre></td></tr></table></figure>
+<h4 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Event,Thread</span><br><span class="line"></span><br><span class="line">dict1 = &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;ldk&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">15</span>, <span class="string">&#x27;sex&#x27;</span>: <span class="literal">True</span>&#125;  <span class="comment"># 临界区</span></span><br><span class="line">e = Event()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span>():</span></span><br><span class="line">    <span class="comment"># this is thread1</span></span><br><span class="line">    print(<span class="string">&quot;this is thread1&quot;</span>)</span><br><span class="line">    <span class="keyword">global</span> e</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        dict1[<span class="string">&#x27;age&#x27;</span>] += <span class="number">1</span></span><br><span class="line">        e.<span class="built_in">set</span>()</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun2</span>():</span></span><br><span class="line">    <span class="comment"># this is thread2</span></span><br><span class="line">    print(<span class="string">&quot;this is thread2&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        e.wait()</span><br><span class="line">        print(dict1[<span class="string">&#x27;age&#x27;</span>], <span class="string">&#x27;岁&#x27;</span>)</span><br><span class="line">        e.clear()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    th1 = Thread(target=fun1)</span><br><span class="line">    th2 = Thread(target=fun2)</span><br><span class="line">    th2.start()</span><br><span class="line">    th1.start()</span><br><span class="line">    </span><br><span class="line">    th1.join()</span><br><span class="line">    th2.join()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="线程锁-Lock"><a href="#线程锁-Lock" class="headerlink" title="线程锁 Lock"></a>线程锁 Lock</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> Lock</span><br><span class="line"></span><br><span class="line">loc = Lock()</span><br><span class="line">loc.acquire() <span class="comment"># 加锁</span></span><br><span class="line">loc.release() <span class="comment"># 解锁</span></span><br></pre></td></tr></table></figure>
+<h4 id="用法：-1"><a href="#用法：-1" class="headerlink" title="用法："></a>用法：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def from threading import Lock,Thread</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">data = []</span><br><span class="line">l = Lock()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">coumst</span>():</span></span><br><span class="line">	<span class="comment"># 消费者</span></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		l.acquire()</span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">len</span>(data) &gt; <span class="number">0</span>:</span><br><span class="line">			data.pop()</span><br><span class="line">			print(<span class="string">&#x27;x消费了一个ldk&#x27;</span>)</span><br><span class="line">		l.release()</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">server</span>():</span></span><br><span class="line">	<span class="comment"># 生产者</span></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		l.acquire()</span><br><span class="line">		data.append(<span class="string">&#x27;ldk&#x27;</span>)</span><br><span class="line">		print(<span class="string">&#x27;生产了一个ldk&#x27;</span>)</span><br><span class="line">		l.release()</span><br><span class="line">		time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	th1 = Thread(target= coumst)</span><br><span class="line">	th2 = Thread(target= server)</span><br><span class="line">	th1.start()</span><br><span class="line">	th2.start()</span><br><span class="line">	th2.join()</span><br><span class="line">	th1.join()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-面经/阿里面经" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-06-29T02:22:23.000Z"><a href="/2021/06/29/%E9%9D%A2%E7%BB%8F/%E9%98%BF%E9%87%8C%E9%9D%A2%E7%BB%8F/">2021-06-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2021/06/29/%E9%9D%A2%E7%BB%8F/%E9%98%BF%E9%87%8C%E9%9D%A2%E7%BB%8F/">阿里面经</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><p>面试官是个小姐姐~</p>
+<h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p>一个数组a，找到最大的$a[i] * a[j] - a[i] + a[j]$是多少 $i != j$</p>
+<p>很显然公式化简为：$(a[i] + 1) * (a[j] - 1) + 1$</p>
+<p>所以可得：$a[i]$和$a[j]$同时最大或最小（负数）</p>
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>求$[L,R]$中二进制形式下1的个数等于k的数字有多少个</p>
+<p>明显的数位dp</p>
+<p>变为：$[0,R]-[0,L-1]$</p>
+<p>即实现函数求$[0,x]$中二进制形式下1的个数等于k的数字有多少个</p>
+<p>转移方程：</p>
+<p>$a$数组是x的二进制形式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a[i] == <span class="number">0</span>)</span><br><span class="line">    dp[i][j][<span class="number">1</span>] = dp[i<span class="number">-1</span>][j][<span class="number">1</span>];</span><br><span class="line">    dp[i][j][<span class="number">0</span>] = dp[i<span class="number">-1</span>][j][<span class="number">0</span>] + dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(a[i] == <span class="number">1</span>)</span><br><span class="line">    dp[i][j][<span class="number">1</span>] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">    dp[i][j][<span class="number">0</span>] = dp[i<span class="number">-1</span>][j][<span class="number">0</span>] + dp[i<span class="number">-1</span>][j][<span class="number">1</span>] + dp[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h3><p>第三题让写了个题：丑数，leetcode上的题</p>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><p>面试官超好，有提示，感觉比较温柔</p>
+<h3 id="算法题："><a href="#算法题：" class="headerlink" title="算法题："></a>算法题：</h3><p>有n个岛，需要把岛联通（也就是建n-1条路），有m条路可修建。</p>
+<p>每条路有两个属性：(val, cost)</p>
+<ul>
+<li>val代表 这条路的舒适度</li>
+<li>cost代表 修建这条路的花费</li>
+</ul>
+<p>最后总的舒适度为：所有修建路的舒适度的最小值</p>
+<p>问：现在可最多花费C，总舒适度最大可以是多少</p>
+<p>很显然，，让最小值最大——- <strong>二分</strong></p>
+<p>所以就是二分+最小生成树check</p>
+<h3 id="基础题："><a href="#基础题：" class="headerlink" title="基础题："></a>基础题：</h3><p>sql建表：</p>
+<p>微博上有普通用户和大V，大V只需要知道关注自己的人数，普通用户需要知道自己关注了哪些大V</p>
+<p>设计模式：</p>
+<p>需要统计一个接口在1s内使用的次数</p>
+<p>答：一个工厂类，每次使用都从这个类构造。</p>
+<p>但如果不来回的创建销毁，一直使用怎么办？（也就是池）就像线程池那样 创建好 使用时直接用 不销毁</p>
+<p>答：单例模式接口里使用单例模式统计调用的个数</p>
+<hr>
+<p>不记得了。。。。想起来了补</p>
+<h2 id="三面"><a href="#三面" class="headerlink" title="三面"></a>三面</h2><p>面试官比较高冷、严肃</p>
+<ol>
+<li>acm有什么用？为什么要搞acm？</li>
+<li>从acm得到了什么？</li>
+<li>自己的优缺点？</li>
+<li>自己在acm队里有什么作用</li>
+<li>acm队伍的排名（学校、ICPC）</li>
+<li>高考分数、哪科考好了、哪科没考好</li>
+<li>学校里成绩、哪科学的好、哪科学不好、分数</li>
+<li>除了学习还干什么？</li>
+<li>技术栈是Java没问题吧</li>
+</ol>
+<hr>
+<p>不记得了。。。。想起来了补</p>
+<h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><ol>
+<li>了解阿里健康的产品吗？医鹿app</li>
+<li>为什么选择广州</li>
+<li>最有成就感的事</li>
+<li>acm为什么没拿金，有希望吗</li>
+<li>以后会想着去北京、上海发展、定居吗</li>
+<li>之前有拿到offer吗</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-ACM/ICPC济南-构造-Tree-Constructer" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2020-12-28T04:13:37.000Z"><a href="/2020/12/28/ACM/ICPC%E6%B5%8E%E5%8D%97-%E6%9E%84%E9%80%A0-Tree-Constructer/">2020-12-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2020/12/28/ACM/ICPC%E6%B5%8E%E5%8D%97-%E6%9E%84%E9%80%A0-Tree-Constructer/">ICPC济南--构造--Tree Constructer</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h3 id="Tree-Constructer"><a href="#Tree-Constructer" class="headerlink" title="Tree Constructer"></a>Tree Constructer</h3><p>给一棵树，让给每个点赋点权；满足：每条边的两个点按位或（ $|$ ）起来等于 $2^{60} - 1$ ，并且没有连边的点按位或（ $|$ ）起来不等于 $2^{60} - 1$ 。</p>
+<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>怎么构造呢？很明显第一层与第二层、第二层与第三层……</p>
+<p>所以奇数层是一种构造方法、偶数层是一种构造方法、并且按位或等于 $2^{60} - 1$ 。</p>
+<p><del>然后就不会了。。</del></p>
+<p>赛后搜题解：</p>
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/kaka03200/article/details/111826684">https://blog.csdn.net/kaka03200/article/details/111826684</a>]: </p>
+<p>得知：如果先把奇数层标上：$1111110、1111101、1111011、1110111、1101111$ 这样的</p>
+<p>于是，偶数层就是把奇数层上的按位与一下再取反就好。</p>
+<p>但是这样有一个问题：奇数层与奇数层按位或也是 $2^{60} - 1$ ，所以把奇数层最高位变为 $0$ 偶数层变 $1$ 。</p>
+<p>有100个点，但是只有60位，所以不一定要奇数层那样标，只用选奇数或偶数层点数较少的那个标就好。</p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mkp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sd second</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e3</span> + <span class="number">105</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">3e6</span>+<span class="number">106</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vv[maxn];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v[<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> fa,<span class="keyword">int</span> de)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	v[de].pb(x);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vv[x].size(); i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v = vv[x][i];</span><br><span class="line">		<span class="keyword">if</span>(v == fa)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		dfs(v,x,de^<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">ll a[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x, y;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;x,&amp;y);</span><br><span class="line">		vv[x].pb(y);</span><br><span class="line">		vv[y].pb(x);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(v[<span class="number">0</span>].size() &gt; v[<span class="number">1</span>].size())</span><br><span class="line">		swap(v[<span class="number">0</span>],v[<span class="number">1</span>]);</span><br><span class="line">	ll temp = (<span class="number">1l</span>l &lt;&lt; <span class="number">60</span>) - <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// printf(&quot;%lld\n&quot;, temp);</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v[<span class="number">0</span>].size(); i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = v[<span class="number">0</span>][i];</span><br><span class="line">		ll s = temp - (<span class="number">1l</span>l &lt;&lt; i) - (<span class="number">1l</span>l &lt;&lt; <span class="number">59</span>);</span><br><span class="line">		a[x] = s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v[<span class="number">1</span>].size(); i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = v[<span class="number">1</span>][i];</span><br><span class="line">		ll s = temp;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; vv[x].size(); j ++ )</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> v = vv[x][j];</span><br><span class="line">			s = s &amp; a[v];</span><br><span class="line">		&#125;</span><br><span class="line">		a[x] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">60</span>; j ++ )</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(((s &gt;&gt; j) &amp; <span class="number">1</span>) == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				a[x] += <span class="number">1l</span>l &lt;&lt; j;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// s = ~s;</span></span><br><span class="line">		<span class="comment">// a[x] = s;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-ACM/牛客-倍增-SCOI2015-国旗计划" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2020-12-25T13:19:48.000Z"><a href="/2020/12/25/ACM/%E7%89%9B%E5%AE%A2-%E5%80%8D%E5%A2%9E-SCOI2015-%E5%9B%BD%E6%97%97%E8%AE%A1%E5%88%92/">2020-12-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2020/12/25/ACM/%E7%89%9B%E5%AE%A2-%E5%80%8D%E5%A2%9E-SCOI2015-%E5%9B%BD%E6%97%97%E8%AE%A1%E5%88%92/">牛客--倍增--[SCOI2015]国旗计划</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h3 id="SCOI2015-国旗计划"><a href="#SCOI2015-国旗计划" class="headerlink" title="[SCOI2015]国旗计划"></a>[SCOI2015]国旗计划</h3><p>有一个圆和 $n$ 个人，这 $n$ 个人要接力走完这个圆，每个人可以顺时针从 $l$ 走到 $r$ ，问在必选 $x$ 的情况下，最少选多少人？</p>
+<p>输出$n$个数，表示 $x = [1,n]$ 时的答案。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>一眼看上去，只知道要把环变成链，也就是两个链拼起来，$1、2、3、4、5 …… m、1、2、3、4、5 …… m$，表示为 $1、2、3、4、5 …… m、1 + m、2 + m、3 + m、4 + m、5 + m …… 2 * m$ 这样的话对于一个人 $i$ 在必须选择 $i$ 的时候即其他人必须从 $ri$ 走到 $li + m$ . </p>
+<p>也就是对于一个人可以从 $l$ 走到 $r$ </p>
+<ul>
+<li>如果 $l &lt; r$ 那么在变成链后，就是 $l$ 到 $r$ ，和 $l + m$ 到 $r + m$ 。</li>
+<li>如果 $l &gt; r$ 那么在变成链后，就是 $l$ 到 $r + m$ 和 $l + m$ 到 $2 <em> m$ <em>*一定要记得后面那种情况！！！</em></em> </li>
+</ul>
+<p>于是不会了。。。</p>
+<p>枚举 $x$ ，每次用倍增查询答案，怎么查呢？</p>
+<p>设 $dp[x][i]$ 表示 $x$ 往后走 $2^i$ 步最远能走到哪里。显然是可以的。</p>
+<p>初始化 $dp[x][0]$ 即走一步最远能走到哪。</p>
+<p>查询的时候就很显然了，从 $20$ 枚举到 $0$ 倍增靠近答案。</p>
+<p>但是走最远不一定能走到恰好等于 $li + m$ 的地方，有可能走到的地方比它大也是满足的。所以记一个值来取大于它的最小值的情况。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">/** Init-Start*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mkp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sd second</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">105</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">3e6</span>+<span class="number">106</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dp[maxn][<span class="number">25</span>];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">pii pp[maxn];</span><br><span class="line"><span class="comment">// std::vector&lt;int&gt; vl;</span></span><br><span class="line">pii pl[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// printf(&quot;%f\n&quot;,log2(2e6));</span></span><br><span class="line">	<span class="comment">// printf(&quot;%lld\n&quot;, mod);</span></span><br><span class="line">	<span class="keyword">int</span> n, m;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">int</span> cnt = n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">1</span> ; i &lt;= n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;pp[i].st,&amp;pp[i].sd);</span><br><span class="line">		</span><br><span class="line">		v.pb(pp[i].st);</span><br><span class="line">		v.pb(pp[i].sd);</span><br><span class="line">		<span class="keyword">if</span>(pp[i].st &gt; pp[i].sd)</span><br><span class="line">		&#123;</span><br><span class="line">			pp[i].sd += m;</span><br><span class="line">			v.pb(pp[i].sd);</span><br><span class="line">			pp[++cnt].st = pp[i].st + m;</span><br><span class="line">			pp[cnt].sd = <span class="number">2</span> * m;</span><br><span class="line">			v.pb(pp[cnt].st);</span><br><span class="line">			v.pb(pp[cnt].sd);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			pp[++cnt].st = pp[i].st + m;</span><br><span class="line">			pp[cnt].sd = pp[i].sd + m;</span><br><span class="line">			v.pb(pp[cnt].st);</span><br><span class="line">			v.pb(pp[cnt].sd);</span><br><span class="line">		&#125;</span><br><span class="line">		pl[i] = pp[i];</span><br><span class="line">		<span class="comment">// vl.pb(pp[i].sd);</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// for (int i= 1; i &lt;= cnt; i ++ )</span></span><br><span class="line">	<span class="comment">// &#123;</span></span><br><span class="line">	<span class="comment">// 	// v.pb(pp[i].st);</span></span><br><span class="line">	<span class="comment">// 	// v.pb(pp[i].sd);</span></span><br><span class="line">	<span class="comment">// 	printf(&quot;%d %d\n&quot;,pp[i].st,pp[i].sd);</span></span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">	v.pb(<span class="number">2</span> * m);</span><br><span class="line">	sort(v.begin(),v.end());</span><br><span class="line">	v.erase(unique(v.begin(),v.end()),v.end());</span><br><span class="line">	<span class="comment">// for (int i = 0; i &lt; v.size(); i ++ )</span></span><br><span class="line">	<span class="comment">// &#123;</span></span><br><span class="line">	<span class="comment">// 	printf(&quot;%d &quot;, v[i]);</span></span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">	<span class="comment">// printf(&quot;\n&quot;);</span></span><br><span class="line">	sort(pp + <span class="number">1</span>, pp + <span class="number">1</span> + cnt);</span><br><span class="line">	<span class="keyword">int</span> p = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = v[i];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(p &lt;= cnt &amp;&amp; pp[p].st &lt;= v[i])</span><br><span class="line">		&#123;</span><br><span class="line">			r = max(r, pp[p].sd);</span><br><span class="line">			p ++ ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(r &gt; x)</span><br><span class="line">			dp[i + <span class="number">1</span>][<span class="number">0</span>] = lower_bound(v.begin(),v.end(),r) - v.begin() + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			dp[i + <span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// printf(&quot;%d %d %d\n&quot;,x,i + 1,dp[i + 1][0]);</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">22</span>; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= v.size(); j ++ )</span><br><span class="line">		&#123;</span><br><span class="line">			dp[j][i] = dp[dp[j][i - <span class="number">1</span>]][i - <span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// for(int i = 1; i&lt;= v.size(); i ++ )</span></span><br><span class="line">	<span class="comment">// &#123;</span></span><br><span class="line">	<span class="comment">// 	for (int j = 0; j &lt;= 22; j ++ )</span></span><br><span class="line">	<span class="comment">// 	&#123;</span></span><br><span class="line">	<span class="comment">// 		printf(&quot;%d &quot;, dp[i][j]);</span></span><br><span class="line">	<span class="comment">// 	&#125;</span></span><br><span class="line">	<span class="comment">// 	printf(&quot;\n&quot;);</span></span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = lower_bound(v.begin(),v.end(),pl[i].sd) - v.begin() + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> maxx = lower_bound(v.begin(),v.end(),pl[i].st + m ) - v.begin() + <span class="number">1</span>;</span><br><span class="line">		<span class="comment">// printf(&quot;\n%d %d \n&quot;,x,maxx);</span></span><br><span class="line">		<span class="keyword">int</span> ans =<span class="number">0</span> ;</span><br><span class="line">		<span class="keyword">int</span> sum = inf;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">22</span>; j &gt;= <span class="number">0</span>; j -- )</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(dp[x][j] != <span class="number">0</span> &amp;&amp; dp[x][j] &lt;= maxx)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">// printf(&quot;%d\n&quot;, dp[x][j]);</span></span><br><span class="line">				ans += (<span class="number">1</span> &lt;&lt; j);</span><br><span class="line">				x = dp[x][j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(dp[x][j] &gt; maxx)</span><br><span class="line">			&#123;</span><br><span class="line">				sum = min(sum,ans + (<span class="number">1</span> &lt;&lt; j));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// printf(&quot;%d %d %d\n&quot;,x,maxx,ans);</span></span><br><span class="line">		<span class="keyword">if</span>(x &lt; maxx)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(sum != inf)</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,sum + <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;-1 &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, ans + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="example.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/ACM/">ACM</a><small>4</small></li>
+  
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ICPC/">ICPC</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/tags/%E5%80%8D%E5%A2%9E/">倍增</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 ldk
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

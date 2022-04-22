@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux命令入门 | ldk博博博客</title>
+  <meta name="author" content="ldk">
+  
+  <meta name="description" content="ldk的博客">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Linux命令入门"/>
+  <meta property="og:site_name" content="ldk博博博客"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link rel="shortcut icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+  
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ldk博博博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/null">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-Linux/Linux命令入门" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2021-07-01T13:06:00.000Z"><a href="/2021/07/01/Linux/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/">2021-07-01</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">Linux命令入门</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h2 id="终端命令格式"><a href="#终端命令格式" class="headerlink" title="终端命令格式"></a>终端命令格式</h2><p>command [-options] [parameter]</p>
+<p>命令名 选项 参数</p>
+<h2 id="查阅帮助信息："><a href="#查阅帮助信息：" class="headerlink" title="查阅帮助信息："></a>查阅帮助信息：</h2><p>command —help</p>
+<p>man command</p>
+<h1 id="文件目录常用命令"><a href="#文件目录常用命令" class="headerlink" title="文件目录常用命令"></a>文件目录常用命令</h1><ol>
+<li><p>ls</p>
+<ul>
+<li>-a 所有子目录与文件、包括隐藏的</li>
+<li>-l 以列表形式显示详细信息</li>
+<li>-h 配合-l 人性化的显示文件大小</li>
+</ul>
+</li>
+<li><p>cd</p>
+</li>
+<li><p>touch</p>
+</li>
+<li><p>mkdir</p>
+<ul>
+<li>-p 递归创建目录</li>
+</ul>
+</li>
+<li><p>rm</p>
+<ul>
+<li>-f 强制删除，忽略不存在的文件</li>
+<li>-r 递归删除目录下的内容，删除文件夹时添加</li>
+</ul>
+</li>
+<li><p>tree [目录名] </p>
+<p>​    以树状列出文件目录结构</p>
+<ul>
+<li>-d 只显示目录</li>
+</ul>
+</li>
+<li><p>cp 源文件 目标文件</p>
+<ul>
+<li>-i 覆盖文件前提示</li>
+<li>-r 若是目录文件，递归复制目录下的所有子目录和文件</li>
+</ul>
+</li>
+<li><p>mv 源文件 目标文件</p>
+<ul>
+<li>-i 覆盖文件前提示</li>
+</ul>
+</li>
+<li><p>cat 文件名 </p>
+<ul>
+<li>-b 对非空输出行编号</li>
+<li>-n 对输出的所有行编号</li>
+</ul>
+</li>
+<li><p>more 文件名</p>
+<p>分屏显示文件内容</p>
+<ul>
+<li>空格 显示下一屏</li>
+<li>enter 滚动一行</li>
+<li>b 回滚一屏</li>
+<li>f 前滚一屏</li>
+<li>q 退出</li>
+<li>/word 搜索word字符串</li>
+</ul>
+</li>
+<li><p>grep 搜索文本 文件名</p>
+<p>文本搜索工具</p>
+<ul>
+<li>-n 显示匹配行以及行号</li>
+<li>-v 显示不包含匹配文本的所有行（求反）</li>
+<li>-i 忽略大小写</li>
+</ul>
+<p>常用两种查找模式</p>
+<ul>
+<li>^a 搜索以a开头的行</li>
+<li>ke$ 搜索以ke结束的行</li>
+</ul>
+</li>
+<li><p>echo 文字内容</p>
+<p>显示指定的文字，通常和重定向一起使用</p>
+</li>
+<li><p>重定向 &gt;, &gt;&gt;</p>
+<p>‘&gt;’ 表示输出，会覆盖原有内容</p>
+<p>‘&gt;&gt;’ 表示追加，把内容追加到文件末尾</p>
+</li>
+<li><p>管道|</p>
+<p>一个命令的输出通过管道作为另一个命令的输入</p>
+</li>
+</ol>
+<h1 id="远程管理常用命令"><a href="#远程管理常用命令" class="headerlink" title="远程管理常用命令"></a>远程管理常用命令</h1><ol>
+<li><p>shutdown</p>
+<p>关机、重启</p>
+<ul>
+<li>-r 重新启动</li>
+<li>-c 取消之前指定的关机计划</li>
+</ul>
+<p>不指定选项和参数，默认1分钟后关闭电脑</p>
+<blockquote>
+<p>shutdown now  表示现在</p>
+<p>shutdown 20:25 表示在20:25关机</p>
+<p>shutdown +10  表示10分钟后关机</p>
+<p>shutdown -c 取消之前指定的关机计划</p>
+</blockquote>
+</li>
+<li><p>ifconfig</p>
+<p>查看计算机当前网卡信息</p>
+</li>
+<li><p>ssh 用户名@ip</p>
+</li>
+</ol>
+<p><del>待补</del></p>
+<h1 id="用户权限相关命令"><a href="#用户权限相关命令" class="headerlink" title="用户权限相关命令"></a>用户权限相关命令</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p><strong>用户</strong></p>
+<p>不管是由本机还是远程登录，每个系统都必须拥有一个账号，并且对于不同的系统资源有不同的权限</p>
+<p>权限：</p>
+<p><img src="/2021/07/01/Linux/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/权限.png" alt="权限"></p>
+</li>
+<li><p><strong>组</strong></p>
+<p>不同的用户添加到对应的组中，不用为每个用户设置权限。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Linux/">Linux</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://example.com/2021/07/01/Linux/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="example.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/ACM/">ACM</a><small>4</small></li>
+  
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/ICPC/">ICPC</a><small>1</small></li>
+  
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/tags/Python/">Python</a><small>5</small></li>
+  
+    <li><a href="/tags/%E5%80%8D%E5%A2%9E/">倍增</a><small>2</small></li>
+  
+    <li><a href="/tags/%E6%A0%91%E5%BD%A2dp/">树形dp</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a><small>1</small></li>
+  
+    <li><a href="/tags/%E9%9D%A2%E7%AD%8B/">面筋</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2022 ldk
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+
+
+<script src="/js/gallery.js"></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<script>
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
